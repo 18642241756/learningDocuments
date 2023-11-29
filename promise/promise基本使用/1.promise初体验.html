@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="btn">点击抽奖</button>
+    <script>
+        //随机数生成
+        function rand(m, n) {
+            return Math.ceil(Math.random() * (n - m + 1) + m - 1)
+        }
+        /**
+        点击按钮，1s后中奖，概率30%，
+        中奖弹出：恭喜恭喜，你将暴瘦20斤
+        未中奖弹出：没关系没关系，没中奖也是最美的 
+        */
+        //获取元素对象
+        const btn = document.querySelector('#btn')
+        //绑定事件
+        btn.addEventListener('click', function () {
+            //定时器
+            // setTimeout(() => {
+            //     let n = rand(1, 100)
+            //     if (n <= 30) {
+            //         alert('恭喜恭喜，你将暴瘦20斤')
+            //     } else {
+            //         alert('没关系没关系，没中奖也是最美的 ')
+            //     }
+            // }, 1000)
+
+            //promise
+            // resolve 成功 函数类型的数据
+            // reject 失败 函数类型的数据
+            const p = new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    let n = rand(1, 100)
+                    if (n <= 30) {
+                        resolve(n) //将promise对象设置为【成功】
+                    } else {
+                        reject(n) //将promise对象设置为【失败】
+                    }
+                }, 1000)
+            })
+
+            //调用  then方法
+            // value 值 reason 理由
+            p.then((value) => {
+                //成功的处理
+                alert('恭喜恭喜，你将暴瘦20斤，你的中奖号码为' + value)
+            }, (reason) => {
+                //失败的处理
+                alert('没关系没关系，没中奖也是最美的，您的号码为' + reason)
+            })
+        })
+
+    </script>
+</body>
+
+</html>
