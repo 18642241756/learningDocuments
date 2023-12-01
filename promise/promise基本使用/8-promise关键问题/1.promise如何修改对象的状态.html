@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>promise--如何修改对象状态</title>
+</head>
+<body>
+    <script>
+        let p = new Promise((resolve,reject)=>{
+            // 1.resolve 函数
+            // resolve('ok') // pending ==> fulfilled(resolved)
+            // 2.reject 函数
+            // reject('error')  // pending ==> rejected
+            // 3.抛出问题
+            throw '内部出现错误'
+        })
+        console.log(p);
+        // p.then(value=>{},reason=>{
+        //     console.log(reason);
+        // })
+    </script>
+</body>
+</html>
